@@ -12,4 +12,16 @@ export class TodoListComponent {
 
   public taskList: Array<TaskList> = [];
 
+  public deleteItemTaskList(tarefa: number) {
+    this.taskList.splice(tarefa, 1);
+  }
+
+  public deleteAllTaskList() {
+    const confirm = window.confirm("Deseja realmente deletar todos os itens?");
+
+    if(confirm) {
+      this.taskList = [];
+    }
+  }
+
 }
