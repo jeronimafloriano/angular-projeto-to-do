@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, DoCheck } from '@angular/core';
 
 //Interface
 import { TaskList } from '../../model/task-list';
@@ -8,7 +8,11 @@ import { TaskList } from '../../model/task-list';
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss']
 })
-export class TodoListComponent {
+export class TodoListComponent implements DoCheck {
+
+  ngDoCheck(): void {
+    this.taskList.sort( (first, last) => Number(first.checked) - Number(last.checked));
+  }
 
   public taskList: Array<TaskList> = [];
 
@@ -25,6 +29,16 @@ export class TodoListComponent {
 
     if(confirm) {
       this.taskList = [];
+    }
+  }
+
+  public validationInput(event: string, index: number) {
+    if(!event.length){
+      const confirm = window.confirm("Deseja excluir a tarefa?");
+
+      if(confirm) {
+        this.deleteItemTaskList(index);
+      }
     }
   }
 
