@@ -2,5 +2,7 @@
   ng-model="inputText"
   onfocus="this.placeholder = '' "
   onblur="this.placeholder = 'Digite sua task aqui e tecle Enter' "
-  placeholder="Digite sua task aqui e tecle Enter">
+  placeholder="Digite sua task aqui e tecle Enter"
+  [(ngModel)]="addItemTaskList"
+  (keyup.enter)="submitItemTaskList()">
 

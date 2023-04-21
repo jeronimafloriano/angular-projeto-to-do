@@ -12,6 +12,10 @@ export class TodoListComponent {
 
   public taskList: Array<TaskList> = [];
 
+  public setEmitTaskList(event: string) {
+    this.taskList.push( { task: event, checked: false });
+  }
+
   public deleteItemTaskList(tarefa: number) {
     this.taskList.splice(tarefa, 1);
   }
